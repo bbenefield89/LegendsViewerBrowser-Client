@@ -6,14 +6,7 @@
       <input type="submit" />
     </form>
 
-    <div>
-      <h2>Dance Forms</h2>
-      <ul>
-        <li v-bind:key="dance_form.id[0]" v-for="dance_form in dance_forms">
-          {{ dance_form.description[0] }}
-        </li>
-      </ul>
-    </div>
+    <LegendsList listTitle="Dance Forms" :list="dance_forms" />
 
     <div>
       <h2>Entities</h2>
@@ -121,9 +114,13 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { parseString } from 'xml2js'
 
+// import LegendsList from '@/components/LegendsList/LegendsList.vue'
 import LegendsList from '../LegendsList/LegendsList.vue'
 
-@Component
+@Component({
+  name: 'UploadLegendsForm',
+  components: { LegendsList }
+})
 export default class UploadLegendsForm extends Vue {
 
   public dance_forms: any = []
@@ -138,6 +135,7 @@ export default class UploadLegendsForm extends Vue {
   public regions: any = []
   public sites: any = []
   public underground_regions: any = []
+
 
   public uploadLegendsXmlFile(e: any): void {
     e.preventDefault()
