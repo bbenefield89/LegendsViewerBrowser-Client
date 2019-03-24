@@ -12,8 +12,8 @@ import UploadLegendsForm from '@/components/UploadLegendsForm/UploadLegendsForm.
 
 @Component({
   components: {
-    UploadLegendsForm,
-  },
+    UploadLegendsForm
+  }
 })
 export default class Home extends Vue {}
 </script>
