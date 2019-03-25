@@ -6,107 +6,18 @@
       <input type="submit" />
     </form>
 
-    <LegendsList listTitle="Dance Forms" :list="dance_forms" />
-
-    <div>
-      <h2>Entities</h2>
-      <ul>
-        <li v-bind:key="entity.id[0]" v-for="entity in entities">
-          <span v-if="entity.name">{{ entity.name[0] }}</span>
-          <span v-else>UNKNOWN ENTITY</span>
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Entity Populations</h2>
-      <ul>
-        <li v-bind:key="entity_population.id[0]" v-for="entity_population in entity_populations">
-          {{ entity_population.id[0] }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Historical Eras</h2>
-      <ul>
-        <li v-bind:key="historical_era.name[0]" v-for="historical_era in historical_eras">
-          {{ historical_era.name[0] }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Historical Event Collections</h2>
-      <ul>
-        <li v-bind:key="historical_event_collection.id[0]" v-for="historical_event_collection in historical_event_collections">
-          {{ historical_event_collection.id[0] }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Historical Events</h2>
-      <ul>
-        <li v-bind:key="historical_event.id[0]" v-for="historical_event in historical_events">
-          {{ historical_event.id[0] }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Historical Figures</h2>
-      <ul>
-        <li v-bind:key="historical_figure.id[0]" v-for="historical_figure in historical_figures">
-          {{ historical_figure.id[0] }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Musical Forms</h2>
-      <ul>
-        <li v-bind:key="musical_form.id[0]" v-for="musical_form in musical_forms">
-          {{ musical_form.id[0] }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Poetic Forms</h2>
-      <ul>
-        <li v-bind:key="poetic_form.id[0]" v-for="poetic_form in poetic_forms">
-          {{ poetic_form.id[0] }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Regions</h2>
-      <ul>
-        <li v-bind:key="region.id[0]" v-for="region in regions">
-          {{ region.id[0] }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Sites</h2>
-      <ul>
-        <li v-bind:key="site.id[0]" v-for="site in sites">
-          {{ site.id[0] }}
-        </li>
-      </ul>
-    </div>
-
-    <div>
-      <h2>Underground Regions</h2>
-      <ul>
-        <li v-bind:key="underground_region.id[0]" v-for="underground_region in underground_regions">
-          {{ underground_region.id[0] }}
-        </li>
-      </ul>
-    </div>
+    <DanceForms :dance_forms="dance_forms" />
+    <Entities :entities="entities" />
+    <EntityPopulations :entity_populations="entity_populations" />
+    <HistoricalEras :historical_eras="historical_eras" />
+    <HistoricalEventCollections :historical_event_collections="historical_event_collections" />
+    <HistoricalEvents :historical_events="historical_events" />
+    <HistoricalFigures :historical_figures="historical_figures" />
+    <MusicalForms :musical_forms="musical_forms" />
+    <PoeticForms :poetic_forms="poetic_forms" />
+    <Regions :regions="regions" />
+    <Sites :sites="sites" />
+    <UndergroundRegions :underground_regions="underground_regions" />
   </div>
 </template>
 
@@ -114,27 +25,37 @@
 import { Component, Prop, Vue } from 'vue-property-decorator'
 import { parseString } from 'xml2js'
 
-// import LegendsList from '@/components/LegendsList/LegendsList.vue'
 import LegendsList from '../LegendsList/LegendsList.vue'
+import DanceForms from '../LegendsList/DanceForms/DanceForms.vue'
+import Entities from '../LegendsList/Entities/Entities.vue'
+import EntityPopulations from '../LegendsList/EntityPopulations/EntityPopulations.vue'
+import HistoricalEras from '../LegendsList/HistoricalEras/HistoricalEras.vue'
+import HistoricalEventCollections from '../LegendsList/HistoricalEventCollections/HistoricalEventCollections.vue'
+import HistoricalEvents from '../LegendsList/HistoricalEvents/HistoricalEvents.vue'
+import HistoricalFigures from '../LegendsList/HistoricalFigures/HistoricalFigures.vue'
+import MusicalForms from '../LegendsList/MusicalForms/MusicalForms.vue'
+import PoeticForms from '../LegendsList/PoeticForms/PoeticForms.vue'
+import Regions from '../LegendsList/Regions/Regions.vue'
+import Sites from '../LegendsList/Sites/Sites.vue'
+import UndergroundRegions from '../LegendsList/UndergroundRegions/UndergroundRegions.vue'
 
 @Component({
   name: 'UploadLegendsForm',
-  components: { LegendsList }
+  components: { LegendsList, DanceForms, Entities, EntityPopulations, HistoricalEras, HistoricalEventCollections, HistoricalEvents, HistoricalFigures, MusicalForms, PoeticForms, Regions, Sites, UndergroundRegions }
 })
 export default class UploadLegendsForm extends Vue {
-
-  public dance_forms: any = []
-  public entities: any = []
-  public entity_populations: any = []
-  public historical_eras: any = []
-  public historical_event_collections: any = []
-  public historical_events: any = []
-  public historical_figures: any = []
-  public musical_forms: any = []
-  public poetic_forms: any = []
-  public regions: any = []
-  public sites: any = []
-  public underground_regions: any = []
+  public dance_forms: object[] = []
+  public entities: object[] = []
+  public entity_populations: object[] = []
+  public historical_eras: object[] = []
+  public historical_event_collections: object[] = []
+  public historical_events: object[] = []
+  public historical_figures: object[] = []
+  public musical_forms: object[] = []
+  public poetic_forms: object[] = []
+  public regions: object[] = []
+  public sites: object[] = []
+  public underground_regions: object[] = []
 
 
   public uploadLegendsXmlFile(e: any): void {

@@ -1,24 +1,21 @@
 <template>
   <div>
-    <h2>{{ listTitle }}</h2>
-    
-    <ul>
-      <li v-bind:key="item.id[0]" v-for="item of list">
-        <span v-if="item.description">{{ item.description[0] }}</span>
-      </li>
-    </ul>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
+import DanceForms from './DanceForms/DanceForms.vue'
+
 @Component({
-  name: 'LegendsList'
+  name: 'LegendsList',
+  components: { DanceForms }
 })
 class LegendsList extends Vue {
-  @Prop() public listTitle!: string
+  @Prop() public listTitle!: any
   @Prop() public list!: any
+  @Prop() public childComponent!: any
 }
 
 export default LegendsList
