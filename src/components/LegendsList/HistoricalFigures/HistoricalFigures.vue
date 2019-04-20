@@ -79,10 +79,6 @@
         <p v-if="historical_figure.hasOwnProperty('journey_pet')">
           Journey Pet: {{ historical_figure.journey_pet[0] }}
         </p>
-
-        <!--
-          journey_pet
-        -->
         <br /><br />
       </li>
     </ul>
