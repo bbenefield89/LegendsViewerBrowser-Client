@@ -6,18 +6,18 @@
       <input type="submit" />
     </form>
 
-    <DanceForms :dance_forms="dance_forms" />
+    <HistoricalFigures :historical_figures="historical_figures" />
+    <!-- <DanceForms :dance_forms="dance_forms" />
     <Entities :entities="entities" />
     <EntityPopulations :entity_populations="entity_populations" />
     <HistoricalEras :historical_eras="historical_eras" />
     <HistoricalEventCollections :historical_event_collections="historical_event_collections" />
-    <HistoricalEvents :historical_events="historical_events" />
-    <HistoricalFigures :historical_figures="historical_figures" />
-    <MusicalForms :musical_forms="musical_forms" />
+    <HistoricalEvents :historical_events="historical_events" /> -->
+    <!-- <MusicalForms :musical_forms="musical_forms" />
     <PoeticForms :poetic_forms="poetic_forms" />
     <Regions :regions="regions" />
     <Sites :sites="sites" />
-    <UndergroundRegions :underground_regions="underground_regions" />
+    <UndergroundRegions :underground_regions="underground_regions" /> -->
   </div>
 </template>
 
