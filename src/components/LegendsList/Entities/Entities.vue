@@ -2,9 +2,12 @@
   <div>
     <h2>Entities</h2>
     <ul>
-      <li v-bind:key="entity.id[0]" v-for="entity in entities">
-        <span v-if="entity.name">{{ entity.name[0] }}</span>
-        <span v-else>UNKNOWN ENTITY</span>
+      <li v-bind:key="entity.id[0]" v-for="entity in data">
+        <p>ID: {{ entity.id[0] }}</p>
+        <!-- IF -->
+        <p v-if="entity.name">Entity Name: {{ entity.name[0] }}</p>
+        <!-- ELSE -->
+        <p v-else>UNKNOWN ENTITY</p>
       </li>
     </ul>
   </div>
@@ -17,7 +20,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
   name: 'Entities'
 })
 class Entities extends Vue {
-  @Prop() public entities!: object[]
+  @Prop() public data!: object[]
 }
 
 export default Entities

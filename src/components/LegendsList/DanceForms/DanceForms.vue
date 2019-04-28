@@ -2,7 +2,7 @@
   <div>
     <h2>Dance Forms</h2>
     <ul>
-      <li v-bind:key="dance_form.id[0]" v-for="dance_form in dance_forms">
+      <li v-bind:key="dance_form.id[0]" v-for="dance_form in data">
         {{ dance_form.description[0] }}
       </li>
     </ul>
@@ -16,7 +16,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
   name: 'DanceForms'
 })
 class DanceForms extends Vue {
-  @Prop() public dance_forms!: object[]
+  @Prop() public data!: object[]
 }
 
 export default DanceForms
