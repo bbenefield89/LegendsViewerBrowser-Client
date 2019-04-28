@@ -1,21 +1,25 @@
 <template>
   <div>
+    <h1>Legends List</h1>
+    {{ logger(childComponent) }}
+    <component :is="childComponent.component" :data="childComponent.data"></component>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
-import DanceForms from './DanceForms/DanceForms.vue'
-
 @Component({
-  name: 'LegendsList',
-  components: { DanceForms }
+  name: 'LegendsList'
 })
 class LegendsList extends Vue {
-  @Prop() public listTitle!: any
-  @Prop() public list!: any
-  @Prop() public childComponent!: any
+
+  @Prop() childComponent: any
+  
+  public logger(data: any): any {
+    console.log(data)
+  }
+  
 }
 
 export default LegendsList
