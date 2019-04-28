@@ -1,9 +1,22 @@
 <template>
   <div>
     <h2>Historical Figures</h2>
-    <ul>
+
+    <HistoricalFigureDataList
+      :logger="logger"
+      v-for="historical_figure in data"
+      :key="historical_figure.id[0]"
+      :historicalFigure="historical_figure"
+    />
+
+    <!-- <ul>
       <li class="border" v-bind:key="historical_figure.id[0]" v-for="historical_figure in historical_figures">
-        <p>ID: {{ historical_figure.id[0] }}</p>
+
+        <div v-bind:key="id[0]" v-for="id in historical_figure.id">
+          <p>
+            ID: {{ id[0] }}
+          </p>
+        </div>
 
         <p>Name: {{ historical_figure.name[0] }}</p>
         
@@ -81,18 +94,21 @@
         </p>
         <br /><br />
       </li>
-    </ul>
+    </ul> -->
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator'
 
+import HistoricalFigureDataList from './HistoricalFigureDataList.vue'
+
 @Component({
-  name: 'HistoricalFigures'
+  name: 'HistoricalFigures',
+  components: { HistoricalFigureDataList }
 })
 class HistoricalFigures extends Vue {
-  @Prop() public historical_figures!: object[]
+  @Prop() public data!: object[]
 
   public skills: Set<any> = new Set()
 
