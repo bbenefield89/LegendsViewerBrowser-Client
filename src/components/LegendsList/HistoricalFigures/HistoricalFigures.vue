@@ -1,12 +1,12 @@
 <template>
   <div>
     <h2>Historical Figures</h2>
-
     <HistoricalFigureDataList
-      :logger="logger"
+      class="border"
       v-for="historical_figure in data"
       :key="historical_figure.id[0]"
       :historicalFigure="historical_figure"
+      :dfWorldHistory="dfWorldHistory"
     />
 
     <!-- <ul>
@@ -108,13 +108,10 @@ import HistoricalFigureDataList from './HistoricalFigureDataList.vue'
   components: { HistoricalFigureDataList }
 })
 class HistoricalFigures extends Vue {
+
   @Prop() public data!: object[]
-
-  public skills: Set<any> = new Set()
-
-  public logger(data: any): void {
-    console.log(data)
-  }
+  @Prop() public dfWorldHistory!: any
+  
 }
 
 export default HistoricalFigures
