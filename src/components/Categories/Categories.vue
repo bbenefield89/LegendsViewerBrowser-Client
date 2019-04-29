@@ -1,13 +1,22 @@
 <template>
-  <div>
+  <div class="categories_container">
     <h1>Categories</h1>
 
-    <div class="categories_container">
-      <button @click="renderChildComponent('HistoricalFigures')">Historical Figures</button>
-      <button @click="renderChildComponent('DanceForms')">Dance Forms</button>
-      <button @click="renderChildComponent('Entities')">Entities</button>
-      <button @click="renderChildComponent('HistoricalEras')">Historical Eras</button>
-      <button @click="renderChildComponent('HistoricalEventCollections')">Historical Event Collections</button>
+    <div class="categories_container__labels_container">
+      <button @click="setSearchResults('HistoricalFigures')">Historical Figures</button>
+      <!-- <button @click="setSearchResults('DanceForms')">Dance Forms</button>
+      <button @click="setSearchResults('Entities')">Entities</button>
+      <button @click="setSearchResults('HistoricalEras')">Historical Eras</button>
+      <button @click="setSearchResults('HistoricalEventCollections')">Historical Event Collections</button>
+      <button @click="setSearchResults('HistoricalEvents')">Historical Events</button> -->
+    </div>
+
+    <div class="categories_container__search_container">
+      <ul>
+        <li v-for="(searchResult, idx) of searchResults" :key="idx">
+          <button @click="renderChildComponentData(searchResult)">{{ searchResult.name[0] }}</button>
+        </li>
+      </ul>
     </div>
   </div>
 </template>
@@ -20,16 +29,29 @@ import DanceForms from '@/components/LegendsList/DanceForms/DanceForms.vue'
 import Entities from '@/components/LegendsList/Entities/Entities.vue'
 import HistoricalEras from '@/components/LegendsList/HistoricalEras/HistoricalEras.vue'
 import HistoricalEventCollections from '@/components/LegendsList/HistoricalEventCollections/HistoricalEventCollections.vue'
+import HistoricalEvents from '@/components/LegendsList/HistoricalEvents/HistoricalEvents.vue'
 
 @Component({
   name: 'Categories'
 })
 class Categories extends Vue {
 
-  public childComponents: { [key: string]: any } = { HistoricalFigures, DanceForms, Entities, HistoricalEras, HistoricalEventCollections }
+  @Prop() dfWorldData!: any
+
+  public childComponents: { [key: string]: any } = { HistoricalFigures, DanceForms, Entities, HistoricalEras, HistoricalEventCollections, HistoricalEvents }
+  public searchResults: object[] = []
   
-  public renderChildComponent(component: string): void {
-    this.$emit('render-child-component', this.childComponents[component], component)
+  public logger(data: any) {
+    console.log(data)
+  }
+  
+  public setSearchResults(searchFor: string): any {
+    this.searchResults = this.dfWorldData[searchFor]
+    this.$emit('render-child-component', this.childComponents[searchFor])
+  }
+  
+  public renderChildComponentData(childComponentData: string): void {
+    this.$emit('render-child-component-data', childComponentData)
   }
   
 }
