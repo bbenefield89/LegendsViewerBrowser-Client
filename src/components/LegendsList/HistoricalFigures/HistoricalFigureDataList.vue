@@ -54,6 +54,7 @@
       v-if="historicalFigure.hasOwnProperty('entity_link')"
       title="Entity Link"
       :hfData="historicalFigure.entity_link"
+      :dfWorldHistory="dfWorldHistory"
     />
   </ul>
 </template>
@@ -71,6 +72,7 @@ class HistoricalFigureDataList extends Vue {
 
   @Prop() public logger!: Function
   @Prop() public historicalFigure!: any[]
+  @Prop() public dfWorldHistory!: any
 
   public debug(): void {
     debugger
