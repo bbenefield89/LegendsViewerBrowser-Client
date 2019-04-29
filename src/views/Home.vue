@@ -2,11 +2,21 @@
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
 
-    <UploadLegendsForm @upload-legends-file="setDwarfFortressWorldData" />
+    <UploadLegendsForm
+      @upload-legends-file="setdfWorldHistory"
+    />
 
     <div class="legends_data_container">
-      <Categories @render-child-component="renderChildComponent" />
-      <LegendsList :childComponent="childComponent" />
+      <Categories
+        @render-child-component="renderChildComponent"
+        @render-child-component-data="renderChildComponentData"
+        :dfWorldData="dfWorldHistory"
+      />
+
+      <LegendsList
+        :childComponent="childComponent"
+        :dfWorldHistory="dfWorldHistory"
+      />
     </div>
   </div>
 </template>
@@ -27,17 +37,20 @@ import UploadLegendsForm from '@/components/UploadLegendsForm/UploadLegendsForm.
 })
 export default class Home extends Vue {
 
-  public childComponent: any = { component: null, data: null }
-  public dwarfFortressWorldData: any = {}
+  public childComponent: { component: any, data: object[] } = { component: null, data: [] }
+  public dfWorldHistory: object|any = {}
 
-  public renderChildComponent(component: any, componentName: string): void {
+  public renderChildComponent(component: any): void {
     this.childComponent.component = component
-    this.childComponent.data = this.dwarfFortressWorldData[componentName]
   }
 
-  public setDwarfFortressWorldData(e: any): void {
+  public renderChildComponentData(childComponentData: object|any): void {
+    this.childComponent.data = [childComponentData]
+  }
+
+  public setdfWorldHistory(e: any): void {
     console.log(e)
-    this.dwarfFortressWorldData = e
+    this.dfWorldHistory = e
   }
   
 }
