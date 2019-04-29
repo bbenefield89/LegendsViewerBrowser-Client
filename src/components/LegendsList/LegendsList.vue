@@ -1,8 +1,11 @@
 <template>
   <div>
     <h1>Legends List</h1>
-    {{ logger(childComponent) }}
-    <component :is="childComponent.component" :data="childComponent.data"></component>
+    <component
+      :is="childComponent.component"
+      :data="childComponent.data"
+      :dfWorldHistory="dfWorldHistory"
+    />
   </div>
 </template>
 
@@ -14,7 +17,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator'
 })
 class LegendsList extends Vue {
 
-  @Prop() childComponent: any
+  @Prop() childComponent: object|any
+  @Prop() dfWorldHistory: object|any
   
   public logger(data: any): any {
     console.log(data)
